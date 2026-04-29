@@ -4,7 +4,7 @@ import { GET_TASK_RESPONSE } from "@repo/types"
 
 export const employeeApi = createApi({
     reducerPath: "employeeApi",
-    baseQuery: fetchBaseQuery({ baseUrl: `${APP_URL}/api/employee`, credentials: "include" }),
+    baseQuery: fetchBaseQuery({ baseUrl: `/api/employee`, credentials: "include" }),
     tagTypes: ["task"],
     endpoints: (builder) => {
         return {

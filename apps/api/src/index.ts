@@ -3,10 +3,10 @@ import cors from "cors"
 import authRouts from './routes/auth.routes'
 import adminRoutes from './routes/admin.routes'
 import employeeRoutes from './routes/employee.routes'
-import { FRONTEND_URL } from "./config/env"
+import { FRONTEND_URL, NODE_ENV, PRODUCTION } from "./config/env"
 import cookieParser from "cookie-parser"
 import { protect } from "./moddlewares/auth.middleware"
-const app = express()
+const  app = express()
 
 app.use(cookieParser())
 
@@ -24,6 +24,10 @@ app.get("/", (req, res) => {
     res.json({ message: "API running successfully" })
 })
 const PORT = 5000
-app.listen(PORT, () => {
+if (NODE_ENV!== PRODUCTION) {
+   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
-})
+}) 
+}
+
+export default app
